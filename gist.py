@@ -54,6 +54,9 @@ def post_gist(filename, description):
 class GistCmd(Cmd):
     prompt = 'gist> '
 
+    def do_quit(self, line):
+        return True
+
 
 if __name__ == '__main__':
     args = docopt(__doc__)

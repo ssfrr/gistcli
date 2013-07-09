@@ -52,7 +52,7 @@ def post_gist(filename, description):
 
 
 class GistCmd(Cmd):
-    pass
+    prompt = 'gist> '
 
 
 if __name__ == '__main__':

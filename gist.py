@@ -58,9 +58,28 @@ class GistCmd(Cmd):
         '''Shows a list of the most recent gists posted'''
         gists_response = requests.get(GIST_API_URL)
         for gist in gists_response.json():
+            api_id = gist['id']
             user = gist['user']['login']
             desc = gist['description']
-            print('%s: %s' % (user, desc))
+            print('%s: %s - %s' % (api_id, user, desc))
+
+    def do_show(self, line):
+        '''Displays the given gist'''
+        gist = requests.get(GIST_API_URL + '/' + line).json()
+        if gist['user']:
+            user = gist['user']['login']
+        else:
+            user = 'Anonymous'
+        desc = gist['description']
+        gist_files = gist['files']
+
+        print('User: ' + user)
+        print('Description: ' + desc)
+        for filename, info in gist_files.iteritems():
+            print('\n' + filename + '\n--')
+            raw_file_response = requests.get(info['raw_url'])
+            raw_file = raw_file_response.text
+            print(raw_file)
 
     def do_quit(self, line):
         '''Quits'''

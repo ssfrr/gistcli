@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 '''gist.py
 
 A command-line gist poster in Python.
@@ -7,7 +9,7 @@ making beautiful and functional command-line programs.
 
 Usage: gist.py'''
 
-import docopt
+from docopt import docopt
 
 
 def main(args):

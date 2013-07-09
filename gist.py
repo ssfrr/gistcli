@@ -7,7 +7,10 @@ A command-line gist poster in Python.
 This project is mainly a demo of docopt and cmd, two great python libraries for
 making beautiful and functional command-line programs.
 
-Usage: gist.py <filename>'''
+Usage: gist.py [-d <desc>] <filename>
+
+Options:
+    -d <desc>   A short description of this gist'''
 
 from __future__ import print_function
 from docopt import docopt
@@ -19,10 +22,13 @@ GIST_API_URL = 'https://api.github.com/gists'
 
 def main(args):
     gist_filename = args['<filename>']
+    gist_desc = args['-d']
+    if gist_desc is None:
+        gist_desc = ''
     gist_file = open(gist_filename)
 
     new_gist = {
-        'description': 'A Test Gist',
+        'description': gist_desc,
         'public': True,
         'files': {
             gist_filename: {

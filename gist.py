@@ -54,6 +54,13 @@ def post_gist(filename, description):
 class GistCmd(Cmd):
     prompt = 'gist> '
 
+    def do_list(self, line):
+        gists_response = requests.get(GIST_API_URL)
+        for gist in gists_response.json():
+            user = gist['user']['login']
+            desc = gist['description']
+            print('%s: %s' % (user, desc))
+
     def do_quit(self, line):
         return True
 

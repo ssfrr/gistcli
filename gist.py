@@ -55,6 +55,7 @@ class GistCmd(Cmd):
     prompt = 'gist> '
 
     def do_list(self, line):
+        '''Shows a list of the most recent gists posted'''
         gists_response = requests.get(GIST_API_URL)
         for gist in gists_response.json():
             user = gist['user']['login']
@@ -62,6 +63,7 @@ class GistCmd(Cmd):
             print('%s: %s' % (user, desc))
 
     def do_quit(self, line):
+        '''Quits'''
         return True
 
 

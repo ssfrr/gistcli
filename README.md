@@ -1,4 +1,8 @@
 Writing Command Line Tools in Python
+====================================
+
+The following are my notes for the talk on writing command line applications
+given to PhillyPUG on July 10, 2013.
 
 Usage Strings
  - uses existing unix conventions (posix!)
